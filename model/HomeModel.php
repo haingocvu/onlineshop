@@ -10,6 +10,12 @@ class HomeModel extends DBConnect
 		$rs = $this->loadMoreRow($sql, $params);
 		return $rs;
 	}
+
+	public function getFeaturedProducts(){
+		$sql = "SELECT * FROM products WHERE status = ?";
+		$params = [1];
+		return $this->loadMoreRow($sql, $params);
+	}
 }
 
 ?>
