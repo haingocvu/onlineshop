@@ -2,6 +2,7 @@
 
 $slides = $data["slides"];
 $featuredProducts = $data["featuredProducts"];
+$topSellerProducts = $data["topSellerProducts"];
 
 ?>
 
@@ -103,18 +104,18 @@ $featuredProducts = $data["featuredProducts"];
                                   <?php if($featuredPro->promotion_price == 0): ?>
 
                                   <span class="regular-price">
-                                    <span class="price"><?= $featuredPro->price ?></span>
+                                    <span class="price"><?= number_format($featuredPro->price) ?></span>
                                   </span>
 
                                   <?php else: ?>
 
                                   <p class="special-price">
                                     <span class="price-label">Special Price</span>
-                                    <span class="price"> <?= $featuredPro->promotion_price ?> </span>
+                                    <span class="price"> <?= number_format($featuredPro->promotion_price) ?> </span>
                                   </p>
                                   <p class="old-price">
                                     <span class="price-label">Regular Price:</span>
-                                    <span class="price"> <?= $featuredPro->price ?> </span>
+                                    <span class="price"> <?= number_format($featuredPro->price) ?> </span>
                                   </p>
 
                                 <?php endif; ?>
@@ -138,16 +139,25 @@ $featuredProducts = $data["featuredProducts"];
               <div class="slider-items-products">
                 <div id="top-sellers-slider" class="product-flexslider hidden-buttons">
                   <div class="slider-items slider-width-col4 ">
+
+                    <?php foreach($topSellerProducts as $topSellerPro): ?>
                     <div class="product-item">
                       <div class="item-inner">
                         <div class="product-thumbnail">
+
+                          <?php if($topSellerPro->promotion_price != 0): ?>
                           <div class="icon-sale-label sale-left">Sale</div>
+                          <?php endif; ?>
+
+                          <?php if($topSellerPro->new == 1): ?>
                           <div class="icon-new-label new-right">New</div>
+                          <?php endif; ?>
+
                           <div class="pr-img-area">
-                            <a title="Ipsums Dolors Untra" href="single_product.html">
+                            <a title="<?= $topSellerPro->name ?>" href="single_product.html">
                               <figure>
-                                <img class="first-img" src="public/images/products/img03.jpg" alt="html template">
-                                <img class="hover-img" src="public/images/products/img03.jpg" alt="html template">
+                                <img class="first-img" src="public/images/products/<?= $topSellerPro->image ?>" alt="html template">
+                                <img class="hover-img" src="public/images/products/<?= $topSellerPro->image ?>" alt="html template">
                               </figure>
                             </a>
                             <button type="button" class="add-to-cart-mt">
@@ -160,57 +170,32 @@ $featuredProducts = $data["featuredProducts"];
                         <div class="item-info">
                           <div class="info-inner">
                             <div class="item-title">
-                              <a title="Ipsums Dolors Untra" href="single_product.html">Ipsums Dolors Untra </a>
+                              <a title="<?= $topSellerPro->name ?>" href="single_product.html"> <?= $topSellerPro->name ?> </a>
                             </div>
                             <div class="item-content">
 
                               <div class="item-price">
                                 <div class="price-box">
+
+                                  <?php if($topSellerPro->promotion_price == 0): ?>
+                                  
                                   <span class="regular-price">
-                                    <span class="price">$125.00</span>
+                                    <span class="price"><?= number_format($topSellerPro->price) ?></span>
                                   </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="item-inner">
-                        <div class="product-thumbnail">
-                          <div class="icon-sale-label sale-left">Sale</div>
-                          <div class="pr-img-area">
-                            <a title="Ipsums Dolors Untra" href="single_product.html">
-                              <figure>
-                                <img class="first-img" src="public/images/products/img08.jpg" alt="html template">
-                                <img class="hover-img" src="public/images/products/img08.jpg" alt="html template">
-                              </figure>
-                            </a>
-                            <button type="button" class="add-to-cart-mt">
-                              <i class="fa fa-shopping-cart"></i>
-                              <span> Add to Cart</span>
-                            </button>
-                          </div>
 
-                        </div>
-                        <div class="item-info">
-                          <div class="info-inner">
-                            <div class="item-title">
-                              <a title="Ipsums Dolors Untra" href="single_product.html">Ipsums Dolors Untra </a>
-                            </div>
-                            <div class="item-content">
+                                  <?php else: ?>
 
-                              <div class="item-price">
-                                <div class="price-box">
                                   <p class="special-price">
                                     <span class="price-label">Special Price</span>
-                                    <span class="price"> $456.00 </span>
+                                    <span class="price"> <?= number_format($topSellerPro->promotion_price) ?> </span>
                                   </p>
                                   <p class="old-price">
                                     <span class="price-label">Regular Price:</span>
-                                    <span class="price"> $567.00 </span>
+                                    <span class="price"> <?= number_format($topSellerPro->price) ?> </span>
                                   </p>
+
+                                  <?php endif; ?>
+
                                 </div>
                               </div>
                             </div>
@@ -218,160 +203,8 @@ $featuredProducts = $data["featuredProducts"];
                         </div>
                       </div>
                     </div>
-                    <div class="product-item">
-                      <div class="item-inner">
-                        <div class="product-thumbnail">
-                          <div class="pr-img-area">
-                            <a title="Ipsums Dolors Untra" href="single_product.html">
-                              <figure>
-                                <img class="first-img" src="public/images/products/img01.jpg" alt="html template">
-                                <img class="hover-img" src="public/images/products/img01.jpg" alt="html template">
-                              </figure>
-                            </a>
-                            <button type="button" class="add-to-cart-mt">
-                              <i class="fa fa-shopping-cart"></i>
-                              <span> Add to Cart</span>
-                            </button>
-                          </div>
+                    <?php endforeach ?>
 
-                        </div>
-                        <div class="item-info">
-                          <div class="info-inner">
-                            <div class="item-title">
-                              <a title="Ipsums Dolors Untra" href="single_product.html">Ipsums Dolors Untra </a>
-                            </div>
-                            <div class="item-content">
-
-                              <div class="item-price">
-                                <div class="price-box">
-                                  <p class="special-price">
-                                    <span class="price-label">Special Price</span>
-                                    <span class="price"> $456.00 </span>
-                                  </p>
-                                  <p class="old-price">
-                                    <span class="price-label">Regular Price:</span>
-                                    <span class="price"> $567.00 </span>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="item-inner">
-                        <div class="product-thumbnail">
-                          <div class="pr-img-area">
-                            <a title="Ipsums Dolors Untra" href="single_product.html">
-                              <figure>
-                                <img class="first-img" src="public/images/products/img04.jpg" alt="html template">
-                                <img class="hover-img" src="public/images/products/img04.jpg" alt="html template">
-                              </figure>
-                            </a>
-                            <button type="button" class="add-to-cart-mt">
-                              <i class="fa fa-shopping-cart"></i>
-                              <span> Add to Cart</span>
-                            </button>
-                          </div>
-
-                        </div>
-                        <div class="item-info">
-                          <div class="info-inner">
-                            <div class="item-title">
-                              <a title="Ipsums Dolors Untra" href="single_product.html">Ipsums Dolors Untra </a>
-                            </div>
-                            <div class="item-content">
-
-                              <div class="item-price">
-                                <div class="price-box">
-                                  <span class="regular-price">
-                                    <span class="price">$125.00</span>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="item-inner">
-                        <div class="product-thumbnail">
-                          <div class="pr-img-area">
-                            <a title="Ipsums Dolors Untra" href="single_product.html">
-                              <figure>
-                                <img class="first-img" src="public/images/products/img05.jpg" alt="html template">
-                                <img class="hover-img" src="public/images/products/img05.jpg" alt="html template">
-                              </figure>
-                            </a>
-                            <button type="button" class="add-to-cart-mt">
-                              <i class="fa fa-shopping-cart"></i>
-                              <span> Add to Cart</span>
-                            </button>
-                          </div>
-
-                        </div>
-                        <div class="item-info">
-                          <div class="info-inner">
-                            <div class="item-title">
-                              <a title="Ipsums Dolors Untra" href="single_product.html">Ipsums Dolors Untra </a>
-                            </div>
-                            <div class="item-content">
-
-                              <div class="item-price">
-                                <div class="price-box">
-                                  <p class="special-price">
-                                    <span class="price-label">Special Price</span>
-                                    <span class="price"> $456.00 </span>
-                                  </p>
-                                  <p class="old-price">
-                                    <span class="price-label">Regular Price:</span>
-                                    <span class="price"> $567.00 </span>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="item-inner">
-                        <div class="product-thumbnail">
-                          <div class="pr-img-area">
-                            <a title="Ipsums Dolors Untra" href="single_product.html">
-                              <figure>
-                                <img class="first-img" src="public/images/products/img06.jpg" alt="html template">
-                                <img class="hover-img" src="public/images/products/img06.jpg" alt="html template">
-                              </figure>
-                            </a>
-                            <button type="button" class="add-to-cart-mt">
-                              <i class="fa fa-shopping-cart"></i>
-                              <span> Add to Cart</span>
-                            </button>
-                          </div>
-
-                        </div>
-                        <div class="item-info">
-                          <div class="info-inner">
-                            <div class="item-title">
-                              <a title="Ipsums Dolors Untra" href="single_product.html">Ipsums Dolors Untra </a>
-                            </div>
-                            <div class="item-content">
-
-                              <div class="item-price">
-                                <div class="price-box">
-                                  <span class="regular-price">
-                                    <span class="price">$125.00</span>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

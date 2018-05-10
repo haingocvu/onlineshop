@@ -9,9 +9,11 @@ class HomeController extends BaseController
 		$homeModel = new HomeModel();
 		$slides = $homeModel->getSlides();
 		$featuredProducts = $homeModel->getFeaturedProducts();
+		$topSellerProducts = $homeModel->getTopSellerProducts();
 		$data = [
 			"slides"=>$slides,
-			"featuredProducts"=>$featuredProducts
+			"featuredProducts"=>$featuredProducts,
+			"topSellerProducts"=>$topSellerProducts
 		];
 		return $this->loadView("home", $data);
 	}

@@ -16,6 +16,15 @@ class HomeModel extends DBConnect
 		$params = [1];
 		return $this->loadMoreRow($sql, $params);
 	}
+
+	public function getTopSellerProducts(){
+		$sql = "SELECT products.*, SUM(bill_detail.quantity) as soluong
+				FROM bill_detail INNER JOIN products ON products.id = bill_detail.id_product
+				GROUP BY bill_detail.id_product
+				ORDER BY soluong DESC
+				LIMIT 0,10";
+		return $this->loadMoreRow($sql);
+	}
 }
 
 ?>
