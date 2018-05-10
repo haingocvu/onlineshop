@@ -25,6 +25,12 @@ class HomeModel extends DBConnect
 				LIMIT 0,10";
 		return $this->loadMoreRow($sql);
 	}
+
+	public function getOnSaleProducts($limit = 0){
+		$sql = "SELECT * FROM products WHERE promotion_price != 0";
+		if($limit != 0) $sql .= " LIMIT 0, $limit";
+		return $this->loadMoreRow($sql);
+	}
 }
 
 ?>
