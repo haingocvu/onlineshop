@@ -20,6 +20,7 @@ class TypeModel extends DBConnect{
 		return $this->loadMoreRow($sql);
 	}
 
+	//in fact, we just need getProductsByTypeLevel1 to get all products by type. but for performance, we need both 2 methods.
 	public function getProductsByTypeLevel1($alias){
 		$sql = "SELECT products.*, page_url.url
 				FROM (SELECT parent.*

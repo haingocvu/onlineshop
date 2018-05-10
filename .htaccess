@@ -1,3 +1,9 @@
 RewriteEngine on
 
-REwriteRule ^([a-z0-9-()]+)$ type.php?alias=$1
+REwriteRule ^index.html$ index.php
+
+RewriteRule ^404.html$ 404.php
+
+RewriteRule ^([a-z0-9-()]+)$ type.php?alias=$1
+
+ErrorDocument 404 /onlineshop/404.php
