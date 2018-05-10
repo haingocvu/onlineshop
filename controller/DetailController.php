@@ -17,6 +17,9 @@ class DetailController extends BaseController
 				'detail'=>$detail,
 				'relatedProducts'=>$relatedProducts
 			];
+		}else {
+			header('Location: 404.html');
+			return;
 		}
 		return $this->loadView("detail", $data);
 	}
