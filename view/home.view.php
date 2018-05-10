@@ -81,7 +81,7 @@ $onSaleProducts = $data["onSaleProducts"];
                           <?php endif ?>
 
                           <div class="pr-img-area">
-                            <a title="<?= $featuredPro->name ?>" href="single_product.html">
+                            <a title="<?= $featuredPro->name ?>" href="<?= $featuredPro->url . '.html' ?>">
                               <figure>
                                 <img class="first-img" src="public/images/products/<?= $featuredPro->image ?>" alt="<?= $featuredPro->name ?>">
                                 <img class="hover-img" src="public/images/products/<?= $featuredPro->image ?>" alt="<?= $featuredPro->name ?>">
@@ -96,7 +96,7 @@ $onSaleProducts = $data["onSaleProducts"];
                         <div class="item-info">
                           <div class="info-inner">
                             <div class="item-title">
-                              <a title="<?= $featuredPro->name ?>" href="single_product.html"><?= $featuredPro->name ?> </a>
+                              <a title="<?= $featuredPro->name ?>" href="<?= $featuredPro->url . '.html' ?>"><?= $featuredPro->name ?> </a>
                             </div>
                             <div class="item-content">
                               <div class="item-price">
@@ -155,7 +155,7 @@ $onSaleProducts = $data["onSaleProducts"];
                           <?php endif; ?>
 
                           <div class="pr-img-area">
-                            <a title="<?= $topSellerPro->name ?>" href="single_product.html">
+                            <a title="<?= $topSellerPro->name ?>" href="<?= $topSellerPro->url . '.html' ?>">
                               <figure>
                                 <img class="first-img" src="public/images/products/<?= $topSellerPro->image ?>" alt="html template">
                                 <img class="hover-img" src="public/images/products/<?= $topSellerPro->image ?>" alt="html template">
@@ -171,7 +171,7 @@ $onSaleProducts = $data["onSaleProducts"];
                         <div class="item-info">
                           <div class="info-inner">
                             <div class="item-title">
-                              <a title="<?= $topSellerPro->name ?>" href="single_product.html"> <?= $topSellerPro->name ?> </a>
+                              <a title="<?= $topSellerPro->name ?>" href="<?= $topSellerPro->url . '.html' ?>"> <?= $topSellerPro->name ?> </a>
                             </div>
                             <div class="item-content">
 
@@ -484,13 +484,13 @@ $onSaleProducts = $data["onSaleProducts"];
         <?php for($i = 0; $i < 3; $i++): ?>
         <div class="jtv-product jtv-cat-margin">
           <div class="product-img">
-            <a href="single_product.html">
+            <a href="<?= $topSellerProducts[$i]->url . '.html' ?>">
               <img src="public/images/products/<?= $topSellerProducts[$i]->image ?>" alt="<?= $topSellerProducts[$i]->image ?>">
               <img class="secondary-img" src="public/images/products/<?= $topSellerProducts[$i]->image ?>" alt="<?= $topSellerProducts[$i]->image ?>"> </a>
           </div>
           <div class="jtv-product-content">
             <h3>
-              <a href="single_product.html"><?= $topSellerProducts[$i]->name ?></a>
+              <a href="<?= $topSellerProducts[$i]->url . '.html' ?>"><?= $topSellerProducts[$i]->name ?></a>
             </h3>
             <div class="price-box">
 
@@ -534,13 +534,13 @@ $onSaleProducts = $data["onSaleProducts"];
         <?php foreach($onSaleProducts as $onSaleP): ?>
         <div class="jtv-product jtv-cat-margin">
           <div class="product-img">
-            <a href="single_product.html">
+            <a href="<?= $onSaleP->url . '.html' ?>">
               <img src="public/images/products/<?= $onSaleP->image ?>" alt="<?= $onSaleP->image ?>">
               <img class="secondary-img" src="public/images/products/<?= $onSaleP->image ?>" alt="<?= $onSaleP->image ?>"> </a>
           </div>
           <div class="jtv-product-content">
             <h3>
-              <a href="single_product.html"> <?= $onSaleP->name ?> </a>
+              <a href="<?= $onSaleP->url . '.html' ?>"> <?= $onSaleP->name ?> </a>
             </h3>
             <div class="price-box">
 

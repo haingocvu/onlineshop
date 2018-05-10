@@ -75,7 +75,7 @@ $category = isset($data["catgory"])?$data["catgory"]:null;
                     <?php endif; ?>
 
                     <div class="pr-img-area">
-                      <a title="<?= $product->name ?>" href="<?= $product->url ?>">
+                      <a title="<?= $product->name ?>" href="<?= $product->url . '.html' ?>">
                         <figure>
                           <img class="first-img" src="public/images/products/<?= $product->image ?>" alt="<?= $product->name ?>">
                           <img class="hover-img" src="public/images/products/<?= $product->image ?>" alt="<?= $product->name ?>">
@@ -91,7 +91,7 @@ $category = isset($data["catgory"])?$data["catgory"]:null;
                   <div class="item-info">
                     <div class="info-inner">
                       <div class="item-title">
-                        <a title="<?= $product->name ?>" href="<?= $product->url ?>"><?= $product->name ?> </a>
+                        <a title="<?= $product->name ?>" href="<?= $product->url . '.html' ?>"><?= $product->name ?> </a>
                       </div>
                       <div class="item-content">
 
