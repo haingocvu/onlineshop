@@ -12,6 +12,7 @@
   <meta name="description" content="best template, template free, responsive theme, fashion store, responsive theme, responsive html theme, Premium website templates, web templates, Multi-Purpose Responsive HTML5 Template">
   <meta name="keywords" content="bootstrap, ecommerce, fashion, layout, responsive, responsive template, responsive template download, responsive theme, retail, shop, shopping, store, Premium website templates, web templates, Multi-Purpose Responsive HTML5 Template"
   />
+  <base href="http://localhost/onlineshop/">
   <!-- Mobile specific metas  , -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

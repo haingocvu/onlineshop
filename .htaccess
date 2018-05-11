@@ -6,6 +6,8 @@ RewriteRule ^404.html$ 404.php
 
 RewriteRule ^([a-z0-9-()]+)$ type.php?alias=$1
 
+RewriteRule ^([a-z0-9-()]+)/page/([a-z0-9]+)$ type.php?alias=$1&page=$2
+
 RewriteRule ^([a-z0-9-,()]+).html$ detail.php?alias=$1
 
 ErrorDocument 404 /onlineshop/404.html
