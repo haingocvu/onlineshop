@@ -530,6 +530,7 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
         var price = currentInput.getAttribute("value");
         var eparent = document.getElementById("eparent");
 
+        //check for checkbox is checked or not
         if(!currentInput.checked){
           //call ajax
           var xhttp = new XMLHttpRequest();
