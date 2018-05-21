@@ -9,6 +9,10 @@ class BaseController
 		$menus = $baseModel->getMenu();
 		include_once "view/layout.view.php";
 	}
+
+	protected function loadSortPriceView($view, $data = []){
+		require_once "view/ajax/$view.view.php";
+	}
 }
 
 ?>

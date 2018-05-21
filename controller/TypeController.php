@@ -21,9 +21,15 @@ class TypeController extends BaseController
 			if($catgory->id_parent != null){
 				$totalProductsByType = $typeModel->getProductsByTypeLevel2($alias);
 				$productsByType = $typeModel->getProductsByTypeLevel2($alias, $position, $qty);
+				$price1 = $typeModel->countProductsByTypeLevel2($alias, 200000, 5000000);
+				$price2 = $typeModel->countProductsByTypeLevel2($alias, 5000000, 25000000);
+				$price3 = $typeModel->countProductsByTypeLevel2($alias, 25000000);
 			}else {
 				$totalProductsByType = $typeModel->getProductsByTypeLevel1($alias);
 				$productsByType = $typeModel->getProductsByTypeLevel1($alias, $position, $qty);
+				$price1 = $typeModel->countProductsByTypeLevel1($alias, 200000, 5000000);
+				$price2 = $typeModel->countProductsByTypeLevel1($alias, 5000000, 25000000);
+				$price3 = $typeModel->countProductsByTypeLevel1($alias, 25000000);
 			}
 			$coutTotalProductsByType = count($totalProductsByType);
 			$pager = new Pager($coutTotalProductsByType, $page, $qty, 5);
@@ -31,7 +37,10 @@ class TypeController extends BaseController
 			$data = [
 			"productsByType"=>$productsByType,
 			"catgory"=> $catgory,
-			"pagination"=>$pagination
+			"pagination"=>$pagination,
+			"price1"=>$price1->qty,
+			"price2"=>$price2->qty,
+			"price3"=>$price3->qty
 			];
 		}
 		return $this->loadView("type", $data);

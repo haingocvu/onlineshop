@@ -53,7 +53,7 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
         </div>
 
         <div class="product-grid-area">
-          <ul class="products-grid">
+          <ul class="products-grid" id="eparent">
 
             <?php if($productsByType != null): ?>
             <?php foreach($productsByType as $product): ?>
@@ -319,29 +319,29 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
         </div>
         <div class="block-content">
           <div class="slider-range">
-            <div data-label-reasult="Range:" data-min="0" data-max="500" data-unit="$" class="slider-range-price" data-value-min="50"
-              data-value-max="350"></div>
-            <div class="amount-range-price">Range: $10 - $550</div>
+            <div data-label-reasult="Range:" data-min="200000" data-max="70000000" data-unit="vnd " class="slider-range-price" data-value-min="5000000"
+              data-value-max="50000000"></div>
+            <div class="amount-range-price">Range: vnd 200.000 - vnd 70.000.000</div>
             <ul class="check-box-list">
               <li>
-                <input type="checkbox" id="p1" name="cc" />
-                <label for="p1">
-                  <span class="button"></span> $20 - $50
-                  <span class="count">(0)</span>
+                <input type="checkbox" id="p1" name="cc" value="200000-5000000"/>
+                <label for="p1" class="lblprice">
+                  <span class="button"></span> 200.000 - 5.000.000
+                  <span class="count">(<?= $data["price1"] ?>)</span>
                 </label>
               </li>
               <li>
-                <input type="checkbox" id="p2" name="cc" />
-                <label for="p2">
-                  <span class="button"></span> $50 - $100
-                  <span class="count">(0)</span>
+                <input type="checkbox" id="p2" name="cc" value="5000000-25000000" />
+                <label for="p2" class="lblprice">
+                  <span class="button"></span> 5.000.000 - 25.000.000
+                  <span class="count">(<?= $data["price2"] ?>)</span>
                 </label>
               </li>
               <li>
-                <input type="checkbox" id="p3" name="cc" />
-                <label for="p3">
-                  <span class="button"></span> $100 - $250
-                  <span class="count">(0)</span>
+                <input type="checkbox" id="p3" name="cc" value="25000000" />
+                <label for="p3" class="lblprice">
+                  <span class="button"></span> > 25.000.000
+                  <span class="count">(<?= $data["price3"] ?>)</span>
                 </label>
               </li>
             </ul>
@@ -518,3 +518,58 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
 </div>
 </div>
 <!-- Main Container End -->
+<script type="text/javascript">
+  window.onload = function(){
+    var es = document.querySelectorAll("label.lblprice");
+    var isReplaced = false;
+    for(var e of es){
+      e.addEventListener("click", function(){
+        var aliasSent = '<?= $_GET["alias"] ?>';
+        var inputID = this.getAttribute("for");
+        var currentInput = document.getElementById(inputID);
+        var price = currentInput.getAttribute("value");
+        var eparent = document.getElementById("eparent");
+
+        if(!currentInput.checked){
+          //call ajax
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+              //check for the first call. we will replace the content of the parent
+              if(!isReplaced){
+                console.log("replacing");
+                //create a element and assign retured value to it
+                var childToAppend = document.createElement("div");
+                childToAppend.setAttribute("id", "price"+price);
+                childToAppend.innerHTML = this.responseText;
+                //remove all child of the parent node
+                while(eparent.firstChild){
+                  eparent.removeChild(eparent.firstChild);
+                }
+                //append recent created element to the parent
+                eparent.appendChild(childToAppend);
+                isReplaced = true;
+              }else{
+                //if not a first call, we will appending
+                console.log("appending");
+                //create a element and assign retured value to it
+                var childToAppend = document.createElement("div");
+                childToAppend.setAttribute("id", "price"+price);
+                childToAppend.innerHTML = this.responseText;
+                 //append recent created element to the parent
+                eparent.appendChild(childToAppend);
+              }
+            }
+          }
+          xhttp.open("GET", "sortprice.php?price=" + price + "&alias=" + aliasSent);
+          xhttp.send();
+        }else{
+          console.log("removing");
+          //get child and remove child
+          var echild = document.getElementById("price"+price);
+          eparent.removeChild(echild);
+        }
+      });
+    }
+  }
+</script>
