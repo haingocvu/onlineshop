@@ -472,6 +472,23 @@
 
   </div>
 
+<!-- Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>added <strong><span id="namee"></span></strong> to cart</p>
+        <div><a href="shopping-cart.php">View Cart</a></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
   <!-- JS -->
 
@@ -534,7 +551,30 @@
     });
   </script>
 
-
+<script type="text/javascript">
+  window.onload = function(){
+    var es = document.querySelectorAll("button.add-to-cart-mt");
+    for(var e of es){
+      e.onclick = function(){
+        var productID = this.getAttribute("idproduct");
+        //call ajax
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200) {
+            //console.log(this.responseText);
+            document.getElementById("namee").innerHTML = this.responseText;
+            $('#myModal1').modal('show');
+          }
+        };
+        var params = "productID=" + productID;
+        xhttp.open("POST", "cart.php");
+        //POST need set header
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(params);
+      }
+    }
+  }
+</script>
 
 </body>
 

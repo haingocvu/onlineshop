@@ -87,7 +87,7 @@ $onSaleProducts = $data["onSaleProducts"];
                                 <img class="hover-img" src="public/images/products/<?= $featuredPro->image ?>" alt="<?= $featuredPro->name ?>">
                               </figure>
                             </a>
-                            <button type="button" class="add-to-cart-mt">
+                            <button type="button" class="add-to-cart-mt" idproduct=<?= $featuredPro->id ?>>
                               <i class="fa fa-shopping-cart"></i>
                               <span> Add to Cart</span>
                             </button>
@@ -161,7 +161,7 @@ $onSaleProducts = $data["onSaleProducts"];
                                 <img class="hover-img" src="public/images/products/<?= $topSellerPro->image ?>" alt="html template">
                               </figure>
                             </a>
-                            <button type="button" class="add-to-cart-mt">
+                            <button type="button" class="add-to-cart-mt" idproduct=<?= $topSellerPro->id ?>>
                               <i class="fa fa-shopping-cart"></i>
                               <span> Add to Cart</span>
                             </button>
