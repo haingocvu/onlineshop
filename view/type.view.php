@@ -519,7 +519,7 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
 </div>
 <!-- Main Container End -->
 <script type="text/javascript">
-  window.onload = function(){
+  document.addEventListener("DOMContentLoaded", function(event) { 
     var es = document.querySelectorAll("label.lblprice");
     var isReplaced = false;
     for(var e of es){
@@ -572,5 +572,5 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
         }
       });
     }
-  }
+  });
 </script>

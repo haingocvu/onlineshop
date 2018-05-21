@@ -552,10 +552,10 @@
   </script>
 
 <script type="text/javascript">
-  window.onload = function(){
-    var es = document.querySelectorAll("button.add-to-cart-mt");
-    for(var e of es){
-      e.onclick = function(){
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var list_element = document.querySelectorAll("button.add-to-cart-mt");
+    for(var _e of list_element){
+      _e.onclick = function(){
         var productID = this.getAttribute("idproduct");
         //call ajax
         var xhttp = new XMLHttpRequest();
@@ -573,7 +573,29 @@
         xhttp.send(params);
       }
     }
-  }
+  });
+  // window.onload = function(){
+  //   var list_element = document.querySelectorAll("button.add-to-cart-mt");
+  //   for(var _e of list_element){
+  //     _e.onclick = function(){
+  //       var productID = this.getAttribute("idproduct");
+  //       //call ajax
+  //       var xhttp = new XMLHttpRequest();
+  //       xhttp.onreadystatechange = function(){
+  //         if (this.readyState == 4 && this.status == 200) {
+  //           //console.log(this.responseText);
+  //           document.getElementById("namee").innerHTML = this.responseText;
+  //           $('#myModal1').modal('show');
+  //         }
+  //       };
+  //       var params = "productID=" + productID;
+  //       xhttp.open("POST", "cart.php");
+  //       //POST need set header
+  //       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //       xhttp.send(params);
+  //     }
+  //   }
+  // }
 </script>
 
 </body>
