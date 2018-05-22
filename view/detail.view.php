@@ -64,17 +64,16 @@ $relatedProducts = $data['relatedProducts'];
                 <div class="cart-plus-minus">
                   <label for="qty">Quantity:</label>
                   <div class="numbers-row">
-                    <div   class="dec qtybutton">
+                    <div class="dec qtybutton">
                       <i class="fa fa-minus">&nbsp;</i>
                     </div>
-                    <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
-                    <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;"
-                      class="inc qtybutton">
+                    <input id="productqty" type="text" class="qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
+                    <div class="inc qtybutton">
                       <i class="fa fa-plus">&nbsp;</i>
                     </div>
                   </div>
                 </div>
-                <button class="button pro-add-to-cart" title="Add to Cart" type="button">
+                <button id="btn-add-product-to-cart" id-product=<?= $detail->id ?> class="button pro-add-to-cart" title="Add to Cart" type="button">
                   <span>
                     <i class="fa fa-shopping-cart"></i> Add to Cart</span>
                 </button>
@@ -119,7 +118,7 @@ $relatedProducts = $data['relatedProducts'];
                     <div class="pr-img-area">
                       <img class="first-img" src="public/images/products/<?= $p->image ?>" alt="">
                       <img class="hover-img" src="public/images/products/<?= $p->image ?>" alt="">
-                      <button type="button" class="add-to-cart-mt">
+                      <button type="button" class="add-to-cart-mt" idproduct=<?= $p->id ?>>
                         <i class="fa fa-shopping-cart"></i>
                         <span> Add to Cart</span>
                       </button>
@@ -173,3 +172,51 @@ $relatedProducts = $data['relatedProducts'];
   </div>
 </section>
 <!-- Related Product Slider End -->
+<script type="text/javascript">
+   document.addEventListener("DOMContentLoaded", function(event) {
+      document.querySelectorAll(".dec")[0].addEventListener("click", function(){
+        var e_numberInput = document.getElementById("productqty");
+        //console.log(e_numberInput);
+        var value = !isNaN(e_numberInput.value)?parseInt(e_numberInput.value):1;
+        if(value > 1){
+          --value;
+        }
+        e_numberInput.value = value;
+      });
+      document.querySelectorAll(".inc")[0].addEventListener("click", function(){
+        var e_numberInput = document.getElementById("productqty");
+        //console.log(e_numberInput);
+        var value = !isNaN(e_numberInput.value)?parseInt(e_numberInput.value):0;
+        ++value;
+        e_numberInput.value = value;
+      });
+      document.getElementById("btn-add-product-to-cart").addEventListener("click", function(){
+        var e_numberInput = document.getElementById("productqty");
+        if(isNaN(e_numberInput.value)){
+          e_numberInput.value = 1;
+          alert("input invalid!");
+          e_numberInput.focus();
+          return;
+        }else{
+          var qty = e_numberInput.value;
+          var productID = document.getElementById("btn-add-product-to-cart").getAttribute("id-product");
+          var params = "qty=" + qty + "&productID=" + productID;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+              //console.log(this.responseText);
+            if(this.responseText.trim() == "error"){
+              alert("error");
+            }else{
+              document.getElementById("namee").innerHTML = this.responseText;
+              $('#myModal1').modal('show');
+            }
+            }
+          }
+          xhttp.open("POST", "cart.php");
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send(params);
+        }
+      });
+   });
+</script>

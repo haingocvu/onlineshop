@@ -52,6 +52,8 @@
 
   <!-- style CSS -->
   <link rel="stylesheet" type="text/css" href="public/css/style.css" media="all">
+
+  <link href="public/css/myapp.css" rel="stylesheet">
 </head>
 
 <body class="cms-index-index cms-home-page">
@@ -150,13 +152,13 @@
               <div class="top-cart-contain">
                 <div class="mini-cart">
                   <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
-                    <a href="#">
+                    <a onclick="window.location.href = 'shopping-cart.php'">
                       <div class="cart-icon">
                         <i class="fa fa-shopping-cart"></i>
                       </div>
                       <div class="shoppingcart-inner hidden-xs">
                         <span class="cart-title">Shopping Cart</span>
-                        <span class="cart-total">4 Item(s): $520.00</span>
+                        <span class="cart-total"><?php if($shoppingcart != null) echo count($shoppingcart->items); ?> Item(s): <?php if($shoppingcart != null) echo number_format($shoppingcart->totalPromotionPrice); ?></span>
                       </div>
                     </a>
                   </div>
@@ -562,8 +564,12 @@
         xhttp.onreadystatechange = function(){
           if (this.readyState == 4 && this.status == 200) {
             //console.log(this.responseText);
-            document.getElementById("namee").innerHTML = this.responseText;
-            $('#myModal1').modal('show');
+            if(this.responseText.trim() == "error"){
+              alert("error");
+            }else{
+              document.getElementById("namee").innerHTML = this.responseText;
+              $('#myModal1').modal('show');
+            }
           }
         };
         var params = "productID=" + productID;
@@ -574,28 +580,6 @@
       }
     }
   });
-  // window.onload = function(){
-  //   var list_element = document.querySelectorAll("button.add-to-cart-mt");
-  //   for(var _e of list_element){
-  //     _e.onclick = function(){
-  //       var productID = this.getAttribute("idproduct");
-  //       //call ajax
-  //       var xhttp = new XMLHttpRequest();
-  //       xhttp.onreadystatechange = function(){
-  //         if (this.readyState == 4 && this.status == 200) {
-  //           //console.log(this.responseText);
-  //           document.getElementById("namee").innerHTML = this.responseText;
-  //           $('#myModal1').modal('show');
-  //         }
-  //       };
-  //       var params = "productID=" + productID;
-  //       xhttp.open("POST", "cart.php");
-  //       //POST need set header
-  //       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  //       xhttp.send(params);
-  //     }
-  //   }
-  // }
 </script>
 
 </body>
