@@ -25,7 +25,7 @@
               <img class="hover-img" src="public/images/products/<?= $product->image ?>" alt="<?= $product->name ?>">
             </figure>
           </a>
-          <button type="button" class="add-to-cart-mt">
+          <button idproduct="<?= $product->id ?>" type="button" class="add-to-cart-mt">
             <i class="fa fa-shopping-cart"></i>
             <span> Add to Cart</span>
           </button>
