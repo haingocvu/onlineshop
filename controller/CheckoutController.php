@@ -2,6 +2,8 @@
 
 require_once "BaseController.php";
 require_once "Model/CheckoutModel.php";
+require_once "helper/Function.php";
+require_once "helper/PHPMailer/mailer.php";
 
 class CheckoutController extends BaseController{
 	function showView(){
@@ -18,6 +20,9 @@ class CheckoutController extends BaseController{
 		try {
 			//get cart session
 			$cart = $_SESSION["cart"];
+			//token and tokendate for bill
+			$token = createToken();
+			$token_date = date("Y-m-d H:i:s");
 			//save customer
 			$name = $_POST["fullname"];
 			$gender = $_POST["gender"];
@@ -35,8 +40,6 @@ class CheckoutController extends BaseController{
 				$promt_price = $cart->totalPromotionPrice;
 				$payment_method = $_POST["payments"];
 				$note = $_POST["note"];
-				$token = "dadagsgjsfgjsfsdfksdf";
-				$token_date = date("Y-m-d H:i:s");
 				$id_bill = $model->saveBill($id_customer, $date_order, $total, $promt_price, $payment_method, $note, $token, $token_date);
 				//check if bill is inserted successfully
 				//then we save bill detail
@@ -61,15 +64,29 @@ class CheckoutController extends BaseController{
 			//otherwise we commit the changes
 			if($isSuccess == false){
 				$model->conn->rollBack();
-				echo "there are an error when processing your cart! check it later, thanks!";
+				$_SESSION["checkout_error"] = "Order failure, try it later! thanks";
 			}else{
 				$model->conn->commit();
-				echo "Success";
+				//send mail
+				$subject = "ONLINESHOP - Xác Nhận Đơn Hàng";
+				$tokenTime = strtotime($token_date);
+				$link = "http://wwww.localhost/onlineshop/$token/$tokenTime";
+				$body = "
+					chào bạn, <h4 style='color: blue; '> $name </h4>
+					<h5>Confirm this orders by clicking the following link</h5>
+					<a href='$link'>Click here to confirm</a>
+				";
+				sendMail($email, $name, $subject, $body);
+				//if success, unset session of cart
+				//then add success session
+				unset($_SESSION["cart"]);
+				$_SESSION["checkout_success"] = "Order successful, please check your email to confirm the orders";
 			}
+			header("location:checkout.php");
 		} catch (Exception $e) {
 			//when error catched. we rollback also.
 			$model->conn->rollBack();
-			echo "there are an error when processing your cart! check it later, thanks!";
+			$_SESSION["checkout_error"] = "Order failure, try it later! thanks";
 		}
 	}
 }

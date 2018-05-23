@@ -12,6 +12,8 @@ RewriteRule ^([a-z0-9-()]+)$ type.php?alias=$1
 
 RewriteRule ^([a-z0-9-()]+)/page/([a-z0-9]+)$ type.php?alias=$1&page=$2
 
+RewriteRule ^([A-Za-z0-9]+)/([0-9]+)$ confirm-orders.php?token=$1&tokendate=$2
+
 RewriteRule ^([a-z0-9-,()]+).html$ detail.php?alias=$1
 
 ErrorDocument 404 /onlineshop/404.html
