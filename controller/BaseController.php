@@ -6,9 +6,14 @@ session_start();
 
 class BaseController
 {
+	function __construct(){
+		date_default_timezone_set("Asia/Ho_Chi_Minh");
+	}
 	protected function loadView($view = "home", $data = []){
+		//cart for display cart icon on layoutview
 		$oCart = isset($_SESSION["cart"])?$_SESSION["cart"]:null;
 		$shoppingcart = new Cart($oCart);
+		//menu for layoutview
 		$baseModel = new BaseModel();
 		$menus = $baseModel->getMenu();
 		include_once "view/layout.view.php";

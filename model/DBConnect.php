@@ -2,7 +2,7 @@
 
 class DBConnect
 {
-	protected $conn = null;
+	public $conn = null;
 	
 	function __construct($servername = "localhost",$databasename = "apple", $username = "root", $password = "")
 	{
@@ -52,6 +52,9 @@ class DBConnect
 		}else {
 			return false;
 		}
+	}
+	public function getLastID(){
+		return $this->conn->lastInsertId();
 	}
 }
 

@@ -152,7 +152,7 @@
               <div class="top-cart-contain">
                 <div class="mini-cart">
                   <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
-                    <a onclick="window.location.href = 'shopping-cart.php'">
+                    <a onclick="window.location.href = 'shopping-cart.html'">
                       <div class="cart-icon">
                         <i class="fa fa-shopping-cart"></i>
                       </div>
@@ -482,7 +482,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <p>added <strong><span id="namee"></span></strong> to cart</p>
-        <div><a href="shopping-cart.php">View Cart</a></div>
+        <div><a href="shopping-cart.html">View Cart</a></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

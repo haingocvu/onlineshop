@@ -60,7 +60,7 @@ $cart = $data["cart"];
                 </tfoot>
               </table>
             </div>
-            <div class="cart_navigation"> <a class="continue-btn" href="./"><i class="fa fa-arrow-left"> </i>&nbsp; Continue shopping</a> <a class="checkout-btn" href="#"><i class="fa fa-check"></i> Proceed to checkout</a> </div>
+            <div class="cart_navigation"> <a class="continue-btn" href="./"><i class="fa fa-arrow-left"> </i>&nbsp; Continue shopping</a> <a class="checkout-btn" href="checkout.html"><i class="fa fa-check"></i> Proceed to checkout</a> </div>
           </div>
         </div>
       </div>

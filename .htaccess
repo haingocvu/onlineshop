@@ -2,6 +2,10 @@ RewriteEngine on
 
 RewriteRule ^index.html$ index.php
 
+RewriteRule ^checkout.html$ checkout.php
+
+RewriteRule ^shopping-cart.html$ shopping-cart.php
+
 RewriteRule ^404.html$ 404.php
 
 RewriteRule ^([a-z0-9-()]+)$ type.php?alias=$1
