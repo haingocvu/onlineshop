@@ -127,16 +127,21 @@
 
               <div class="top-search">
                 <div id="search">
-                  <form>
+                  <form action="search.html" method="GET">
                     <div class="input-group">
-                      <select class="cate-dropdown hidden-xs" name="category_id">
-                        <option>All Categories</option>
-                        <option>women</option>
-                        <option>Men</option>
-                        <option>Electronics</option>
+                      <select class="cate-dropdown hidden-xs" name="category">
+
+                        <option value="all">All categories</option>
+
+                        <?php foreach($menus as $m): ?>
+
+                        <option value="<?= $m->url ?>"><?= $m->name ?></option>
+
+                        <?php endforeach; ?>
+                        
                       </select>
-                      <input type="text" class="form-control" placeholder="Search" name="search">
-                      <button class="btn-search" type="button">
+                      <input type="text" class="form-control" placeholder="Search" name="name">
+                      <button class="btn-search" type="submit">
                         <i class="fa fa-search"></i>
                       </button>
                     </div>
@@ -499,6 +504,8 @@
 
   <!-- bootstrap js -->
   <script type="text/javascript" src="public/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="public/js/please-wait.js"></script>
 
 
   <!-- owl.carousel.min js -->

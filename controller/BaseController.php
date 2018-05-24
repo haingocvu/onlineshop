@@ -16,10 +16,15 @@ class BaseController
 		//menu for layoutview
 		$baseModel = new BaseModel();
 		$menus = $baseModel->getMenu();
+		//print_r($menus);die;
 		include_once "view/layout.view.php";
 	}
 
 	protected function loadSortPriceView($view, $data = []){
+		require_once "view/ajax/$view.view.php";
+	}
+
+	protected function loadViewNoLayout($view, $data = []){
 		require_once "view/ajax/$view.view.php";
 	}
 }

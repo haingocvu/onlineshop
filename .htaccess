@@ -2,6 +2,8 @@ RewriteEngine on
 
 RewriteRule ^index.html$ index.php
 
+RewriteRule ^search.html$ search.php
+
 RewriteRule ^checkout.html$ checkout.php
 
 RewriteRule ^shopping-cart.html$ shopping-cart.php

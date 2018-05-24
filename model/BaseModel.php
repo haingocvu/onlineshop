@@ -12,7 +12,7 @@ class BaseModel extends DBConnect
 					GROUP BY menu.id
 					ORDER BY submenu DESC";
 		return $this->loadMoreRow($sql);
-	}	
+	}
 }
 
 ?>
