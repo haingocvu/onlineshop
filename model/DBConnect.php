@@ -4,7 +4,7 @@ class DBConnect
 {
 	public $conn = null;
 	
-	function __construct($servername = "localhost",$databasename = "apple", $username = "root", $password = "")
+	function __construct($servername = "sql310.byethost31.com",$databasename = "b31_22131699_apple", $username = "b31_22131699", $password = "zmsj_hai@135_bye")
 	{
 		try {
 			$this->conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
