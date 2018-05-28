@@ -17,7 +17,7 @@ class Pager {
 			//for both first and previous link
 			if($_GET["page"] == 1)
 				//if page == 1, disable both first and previous link
-				$output = $output . '<li class="disabled"><a href="#">&#8810;</a></li>' . '<li class="disabled"><a href="#">&#60;</a></li>';
+				$output = $output . '<li class="disabled"><a>&#8810;</a></li>' . '<li class="disabled"><a>&#60;</a></li>';
 			else
 				//otherwise, enable both first and previous link	
 				$output = $output . '<li><a onclick="getresult(\'' . $href . (1) . '\')" >&#8810;</a></li><li><a onclick="getresult(\'' . $href . ($_GET["page"]-1) . '\')" >&#60;</a></li>';

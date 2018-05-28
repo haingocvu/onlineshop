@@ -441,7 +441,7 @@
         //when using datatype json. we dont need to use header json in php file.
         //otherwise, when using header json in php file. we dont need to use datatye json in js
         success: function(res){
-          console.log(res);
+          //console.log(res);
           //if using dataType JSON. we dont need to parse. Infact, we cant parse becausing the returned value have been parsed into object already.
           jq("#productsList").html(res);
         },
