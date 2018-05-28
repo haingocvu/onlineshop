@@ -19,6 +19,10 @@
   <!-- Favicon  -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
+  <!-- jquery -->
+  <!-- jquery js -->
+  <script type="text/javascript" src="public/js/jquery.min.js"></script>
+
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -498,9 +502,6 @@
 </div>
 
   <!-- JS -->
-
-  <!-- jquery js -->
-  <script type="text/javascript" src="public/js/jquery.min.js"></script>
 
   <!-- bootstrap js -->
   <script type="text/javascript" src="public/js/bootstrap.min.js"></script>

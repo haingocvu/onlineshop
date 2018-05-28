@@ -1,11 +1,3 @@
-<?php  
-
-$productsByType = isset($data["productsByType"])?$data["productsByType"]:null;
-$category = isset($data["catgory"])?$data["catgory"]:null;
-$pagination = isset($data["pagination"])?$data["pagination"]:null;
-
-?>
-
 <!-- Main Container -->
 <div class="main-container col2-left-layout">
 <div class="container">
@@ -47,94 +39,8 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
           </div>
         </div>
       </div>
-      <div class="shop-inner">
-        <div class="page-title">
-          <h2><?= ($category != null)?$category->name:'' ?></h2>
-        </div>
-
-        <div class="product-grid-area">
-          <ul class="products-grid" id="eparent">
-
-            <?php if($productsByType != null): ?>
-            <?php foreach($productsByType as $product): ?>
-
-            <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
-              <div class="product-item">
-                <div class="item-inner">
-                  <div class="product-thumbnail">
-
-                    <?php if($product->promotion_price != 0): ?>
-
-                    <div class="icon-sale-label sale-left">Sale</div>
-
-                    <?php endif; ?>
-
-                    <?php if($product->new == 1): ?>
-                    
-                    <div class="icon-new-label new-right">New</div>
-
-                    <?php endif; ?>
-
-                    <div class="pr-img-area">
-                      <a title="<?= $product->name ?>" href="<?= $product->url . '.html' ?>">
-                        <figure>
-                          <img class="first-img" src="public/images/products/<?= $product->image ?>" alt="<?= $product->name ?>">
-                          <img class="hover-img" src="public/images/products/<?= $product->image ?>" alt="<?= $product->name ?>">
-                        </figure>
-                      </a>
-                      <button type="button" class="add-to-cart-mt" idproduct=<?= $product->id ?>>
-                        <i class="fa fa-shopping-cart"></i>
-                        <span> Add to Cart</span>
-                      </button>
-                    </div>
-
-                  </div>
-                  <div class="item-info">
-                    <div class="info-inner">
-                      <div class="item-title">
-                        <a title="<?= $product->name ?>" href="<?= $product->url . '.html' ?>"><?= $product->name ?> </a>
-                      </div>
-                      <div class="item-content">
-
-                        <div class="item-price">
-                          <div class="price-box">
-
-                            <?php if($product->promotion_price == 0): ?>
-
-                            <span class="regular-price">
-                              <span class="price"><?= number_format($product->price) ?></span>
-                            </span>
-
-                            <?php else: ?>
-
-                            <p class="special-price">
-                              <span class="price-label">Special Price</span>
-                              <span class="price"> <?= number_format($product->promotion_price) ?> </span>
-                            </p>
-                            <p class="old-price">
-                              <span class="price-label">Regular Price:</span>
-                              <span class="price"> <?= number_format($product->price) ?> </span>
-                            </p>
-
-                            <?php endif; ?>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            
-            <?php endforeach; ?>
-            <?php endif ?>
-
-          </ul>
-        </div>
-        <div class="pagination-area ">
-        <?= $pagination ?>
-        </div>
+      <div class="shop-inner page-content" id="productsList" style="position: relative;">
+      <!-- //content -->
       </div>
     </div>
     <aside class="sidebar col-sm-3 col-xs-12 col-sm-pull-9">
@@ -327,21 +233,21 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
                 <input type="checkbox" id="p1" name="cc" value="200000-5000000"/>
                 <label for="p1" class="lblprice">
                   <span class="button"></span> 200.000 - 5.000.000
-                  <span class="count">(<?= $data["price1"] ?>)</span>
+                  <span class="count">price1</span>
                 </label>
               </li>
               <li>
                 <input type="checkbox" id="p2" name="cc" value="5000000-25000000" />
                 <label for="p2" class="lblprice">
                   <span class="button"></span> 5.000.000 - 25.000.000
-                  <span class="count">(<?= $data["price2"] ?>)</span>
+                  <span class="count">price2</span>
                 </label>
               </li>
               <li>
                 <input type="checkbox" id="p3" name="cc" value="25000000" />
                 <label for="p3" class="lblprice">
                   <span class="button"></span> > 25.000.000
-                  <span class="count">(<?= $data["price3"] ?>)</span>
+                  <span class="count">price3</span>
                 </label>
               </li>
             </ul>
@@ -519,58 +425,37 @@ $pagination = isset($data["pagination"])?$data["pagination"]:null;
 </div>
 <!-- Main Container End -->
 <script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function(event) { 
-    var es = document.querySelectorAll("label.lblprice");
-    var isReplaced = false;
-    for(var e of es){
-      e.addEventListener("click", function(){
-        var aliasSent = '<?= $_GET["alias"] ?>';
-        var inputID = this.getAttribute("for");
-        var currentInput = document.getElementById(inputID);
-        var price = currentInput.getAttribute("value");
-        var eparent = document.getElementById("eparent");
-
-        //check for checkbox is checked or not
-        if(!currentInput.checked){
-          //call ajax
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-              //check for the first call. we will replace the content of the parent
-              if(!isReplaced){
-                console.log("replacing");
-                //create a element and assign retured value to it
-                var childToAppend = document.createElement("div");
-                childToAppend.setAttribute("id", "price"+price);
-                childToAppend.innerHTML = this.responseText;
-                //remove all child of the parent node
-                while(eparent.firstChild){
-                  eparent.removeChild(eparent.firstChild);
-                }
-                //append recent created element to the parent
-                eparent.appendChild(childToAppend);
-                isReplaced = true;
-              }else{
-                //if not a first call, we will appending
-                console.log("appending");
-                //create a element and assign retured value to it
-                var childToAppend = document.createElement("div");
-                childToAppend.setAttribute("id", "price"+price);
-                childToAppend.innerHTML = this.responseText;
-                 //append recent created element to the parent
-                eparent.appendChild(childToAppend);
-              }
-            }
-          }
-          xhttp.open("GET", "sortprice.php?price=" + price + "&alias=" + aliasSent);
-          xhttp.send();
-        }else{
-          console.log("removing");
-          //get child and remove child
-          var echild = document.getElementById("price"+price);
-          eparent.removeChild(echild);
+  var jq = $.noConflict();
+  var rowcount = "";
+  //call ajax
+  function getresult(url){
+    jq.ajax({
+        url: url,
+        type: "GET",
+        //should use data in json object. double quotes
+        data: {
+          "alias": "<?= $_GET['alias'] ?>",
+          "rowcount": rowcount,
+          "method": "getproduct"
+        },
+        //when using datatype json. we dont need to use header json in php file.
+        //otherwise, when using header json in php file. we dont need to use datatye json in js
+        success: function(res){
+          console.log(res);
+          //if using dataType JSON. we dont need to parse. Infact, we cant parse becausing the returned value have been parsed into object already.
+          jq("#productsList").html(res);
+        },
+        error: function(xhr){
+          console.log(xhr.status + xhr.statusText)
         }
-      });
+    })
+  }
+  jq(document).ready(function(){
+    try{
+      rowcount = jq("#rowcount").val();
+    }catch(err){
+      console.log(err);
     }
-  });
+    getresult("type.php");
+  })
 </script>

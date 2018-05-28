@@ -4082,6 +4082,17 @@ a.ads1 img {
 	display: inline-block;
 	width: 100%
 }
+.pagination-area1 {
+	border-top: 1px solid #eee;
+	margin: 10px 0 0;
+	padding-top: 20px;
+	text-align: center;
+	display: inline-block;
+	width: 100%
+}
+.pagination-area1 li {
+	cursor: pointer;
+}
 .pagination-area ul {
 	margin-bottom: 0px
 }
